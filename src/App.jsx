@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { ArrowUpRight, Mail, Phone } from 'lucide-react';
 import './App.css';

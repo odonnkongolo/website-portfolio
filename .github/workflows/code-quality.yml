@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Install jsonlint
         run: npm install -g jsonlint
@@ -54,7 +54,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -62,6 +62,10 @@ jobs:
 
       - name: Run ESLint
         run: npx eslint . --max-warnings=0
+
+      - name: Generate ESLint JSON report (on failure)
+        if: failure()
+        run: npx eslint . --format json --output-file eslint-report.json || true
 
       - name: Run npm audit (security vulnerabilities)
         run: npm audit --audit-level=moderate
